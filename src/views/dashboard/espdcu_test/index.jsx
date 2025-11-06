@@ -18,68 +18,7 @@ const index = () => {
     const gridRef = useRef()
     // Fetch data
 
-    // const fetchData = async () => {
-    //     try {
 
-    //         // Fetch tm values
-    //         const response = await fetch('https://api.ms-tech.in/v14/latestNodeLogs');
-
-    //         const result = await response.json();
-    //         setData(result);
-
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error);
-    //     }
-    // };
-
-    // useEffect(() => {
-
-    //     fetchData();
-    // }, []);
-
-    // const fetchData = async () => {
-    //     try {
-    //         // Step 1: Fetch latest logs
-    //         const res = await fetch('https://api.ms-tech.in/v14/latestNodeLogs');
-    //         const json = await res.json();
-    //         const logs = json || [];
-
-    //         // Step 2: Extract unique node_id
-    //         const uniqueNodeIds = [...new Set(logs.map(item => item.node_id))];
-
-    //         // Step 3: Generate Redis keys "v_<node_id>"
-    //         const keys = uniqueNodeIds.map(nodeId => `v_${nodeId}`);
-
-    //         // Step 4: Fetch TM values
-    //         const tmResponse = await fetch('https://api.ms-tech.in/v14/get-multiple-hashes-4g', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify({ keys: keys, fields: ["tm"] })
-    //         });
-
-    //         const tmData = await tmResponse.json();
-
-    //         // Convert TM response into map for easy lookup
-    //         const tmMap = {};
-    //         for (const item of tmData.data || []) {
-    //             const id = item.key.replace(/^v_/, ''); // remove v_
-    //             tmMap[id] = item.data.tm || null;
-    //         }
-
-    //         // Step 5: Merge TM into logs and add gettime
-    //         const finalData = logs.map(node => ({
-    //             ...node,
-    //             tm: tmMap[node.node_id] || null,
-    //         }));
-
-    //         console.log("Merged Data:", finalData);
-    //         setData(finalData);
-
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error);
-    //         setData([]);
-    //     }
-    // };
     const fetchData = async () => {
         try {
             console.log("⏳ Fetching latest logs...");
@@ -89,47 +28,7 @@ const index = () => {
             const json = await res.json();
             const logs = json || [];
 
-            // Step 2: Extract unique node_id
-            // const uniqueNodeIds = [...new Set(logs.map(item => item.dcu_id))];
 
-            // // Step 3: Generate Redis keys "v_<node_id>"
-            // const keys = uniqueNodeIds.map(nodeId => `v_${nodeId}`);
-
-            // // FUNCTION -> Split array into chunks
-            // const chunkArray = (array, size) => {
-            //     const result = [];
-            //     for (let i = 0; i < array.length; i += size) {
-            //         result.push(array.slice(i, i + size));
-            //     }
-            //     return result;
-            // };
-
-            // console.log(`🔹 Total Keys: ${keys.length}`);
-
-            // const keyBatches = chunkArray(keys, 3000);
-            // console.log(`🔹 Calling Redis API in ${keyBatches.length} batches`);
-
-            // const tmMap = {};
-
-            // // ✅ Fetch TM values batch-wise
-            // for (let i = 0; i < keyBatches.length; i++) {
-            //     const batch = keyBatches[i];
-            //     console.log(`➡️ Batch ${i + 1}/${keyBatches.length} - Keys: ${batch.length}`);
-
-            //     const tmResponse = await fetch("https://api.ms-tech.in/v14/get-multiple-hashes-4g", {
-            //         method: "POST",
-            //         headers: { "Content-Type": "application/json" },
-            //         body: JSON.stringify({ keys: batch, fields: ["tm"] })
-            //     });
-
-            //     const tmData = await tmResponse.json();
-
-            //     // Update map
-            //     for (const item of tmData.data || []) {
-            //         const id = item.key.replace(/^v_/, "");
-            //         tmMap[id] = item.data.tm || null;
-            //     }
-            // }
 
             // Step 5: Merge TM into logs
             const finalData = logs.map(node => ({
