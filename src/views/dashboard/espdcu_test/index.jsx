@@ -56,10 +56,34 @@ const index = () => {
 
     const columnDefs = useMemo(() => [
         { headerName: 'DCU', field: 'dcu_id', flex: 2 },
-        { headerName: "port1", field: "port_1", flex: 1 },
-        { headerName: "port2", field: "port_2", flex: 1 },
-        { headerName: "port3", field: "port_3", flex: 1 },
-        { headerName: "port4", field: "port_4", flex: 1 },
+        {
+            headerName: "port1", field: "port_1", flex: 1, valueFormatter: (params) => {
+                const value = params.value;
+
+                return value === "error" ? "Failed" : 'Success';
+            },
+        },
+        {
+            headerName: "port2", field: "port_2", flex: 1, valueFormatter: (params) => {
+                const value = params.value;
+
+                return value === "error" ? "Failed" : 'Success';
+            },
+        },
+        {
+            headerName: "port3", field: "port_3", flex: 1, valueFormatter: (params) => {
+                const value = params.value;
+
+                return value === "error" ? "Failed" : 'Success';
+            },
+        },
+        {
+            headerName: "port4", field: "port_4", flex: 1, valueFormatter: (params) => {
+                const value = params.value;
+
+                return value === "error" ? "Failed" : 'Success';
+            },
+        },
         {
             headerName: 'Time',
             field: 'created_at',
@@ -147,7 +171,7 @@ const index = () => {
     return (
         <>
 
-            <h1>ESPDCU List</h1>
+            <h1>NSDCU Test List</h1>
             <Row className='d-flex justify-content-between  align-items-end mb-4' >
 
                 {/* Node ID Search */}

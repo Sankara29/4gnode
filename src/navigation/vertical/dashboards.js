@@ -25,7 +25,7 @@ export default [
   },
   {
     id: "ESPDcu Test",
-    title: "ESPDcu Test",
+    title: "NSDCU Test",
     icon: <Circle size={12} />,
     navLink: "/dashboard/espdcu_test"
   }
